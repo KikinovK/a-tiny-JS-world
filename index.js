@@ -55,15 +55,15 @@ catWoman.friends = [cat, man];
 
 const inhabitants = [dog, cat, man, woman, catWoman];
 
-const Description = obj => {
-   const nameFriends = obj.friends.reduce((result, item) => result + `${item.name}; `, '')
-   return `${obj.species}; ${obj.name}; ${obj.gender}; ${obj.legs}; ${obj.hands}; ${obj.saying}; ${nameFriends}`  
+const description = obj => {
+   const keys = Object.keys(obj);
+   return keys.map(key => key === 'friends' ? obj[key].map(item => item.name).join('; ') : obj[key]).join('; ');            
 };
 
 
 // ======== OUTPUT ========
 
-inhabitants.forEach(obj => print(Description(obj)));
+inhabitants.forEach(obj => print(description(obj)));
 
 /* Use print(message) for output.
    Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
