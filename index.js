@@ -7,9 +7,64 @@
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
+const dog = {
+   species: 'dog',
+   name: 'Charlie',
+   gender: 'male',
+   legs: 4,
+   hands: 0,
+   saying: 'woof-woof!'
+};
+const cat = {
+   species: 'cat',
+   name: 'Taffy',
+   gender: 'female',
+   legs: 4,
+   hands: 0,
+   saying: 'meow!'
+};
+const man = {
+   species: 'man',
+   name: 'Bruce',
+   gender: 'male',
+   legs: 2,
+   hands: 2,
+   saying: 'Hi!'
+};
+const woman = {
+   species: 'woman',
+   name: 'Emma',
+   gender: 'female',
+   legs: 2,
+   hands: 2,
+   saying: 'Hello!'
+};
+const catWoman = {
+   species: 'cat-woman',
+   name: 'Catwoman',   
+   gender: 'female',
+   legs: 2,
+   hands: 2,
+   saying: cat.saying
+};
+dog.friends = [man, woman];
+cat.friends = [man, woman, catWoman];
+man.friends = [woman, dog, cat, catWoman];
+woman.friends = [dog, cat, man];
+catWoman.friends = [cat, man];
+
+const inhabitants = [dog, cat, man, woman, catWoman];
+
+const Description = obj => {
+   const nameFriends = obj.friends.reduce((result, item) => result + `${item.name}; `, '')
+   return `${obj.species}; ${obj.name}; ${obj.gender}; ${obj.legs}; ${obj.hands}; ${obj.saying}; ${nameFriends}`  
+};
 
 
 // ======== OUTPUT ========
+
+inhabitants.forEach(obj => print(Description(obj)));
+
 /* Use print(message) for output.
    Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
 
