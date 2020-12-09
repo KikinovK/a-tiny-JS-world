@@ -7,63 +7,46 @@
 
 // ======== OBJECTS DEFINITIONS ========
 // Define your objects here
-const dog = {
-   species: 'dog',
-   name: 'Charlie',
-   gender: 'male',
-   legs: 4,
-   hands: 0,
-   saying: 'woof-woof!'
+class Being {
+   constructor(species, name, gender, legs, hands, saying) {
+      this.species = species;
+      this.name = name;
+      this.gender = gender;
+      this.legs = legs;
+      this.hfnds = hands;
+      this.saying = saying;
+      this.friends = [];
+   };
+   addFriends(arr) {
+      arr.forEach(item => this.friends.push(item));
+   }
 };
-const cat = {
-   species: 'cat',
-   name: 'Taffy',
-   gender: 'female',
-   legs: 4,
-   hands: 0,
-   saying: 'meow!'
-};
-const man = {
-   species: 'man',
-   name: 'Bruce',
-   gender: 'male',
-   legs: 2,
-   hands: 2,
-   saying: 'Hi!'
-};
-const woman = {
-   species: 'woman',
-   name: 'Emma',
-   gender: 'female',
-   legs: 2,
-   hands: 2,
-   saying: 'Hello!'
-};
-const catWoman = {
-   species: 'cat-woman',
-   name: 'Catwoman',   
-   gender: 'female',
-   legs: 2,
-   hands: 2,
-   saying: cat.saying
-};
-dog.friends = [man, woman];
-cat.friends = [man, woman, catWoman];
-man.friends = [woman, dog, cat, catWoman];
-woman.friends = [dog, cat, man];
-catWoman.friends = [cat, man];
+
+const dog = new Being ('dog', 'Charlie', 'male', 4, 0, 'woof-woof!');
+const cat = new Being ('cat', 'Taffy', 'female', 4, 0, 'meow!');
+const man = new Being ('man', 'Bruce', 'male', 2, 2, 'Hi!');
+const woman = new Being ('woman', 'Emma', 'female', 2, 2, 'Hello!');
+const catWoman = new Being ('cat-woman', 'Patience', 'female', 2, 2, cat.saying);
+
+
+dog.addFriends([man, woman]);
+cat.addFriends([man, woman, catWoman]);
+man.addFriends([woman, dog, cat, catWoman]);
+woman.addFriends([dog, cat, man]);
+catWoman.addFriends([cat, man]);
 
 const inhabitants = [dog, cat, man, woman, catWoman];
 
 const description = obj => {
    const keys = Object.keys(obj);
-   return keys.map(key => key === 'friends' ? obj[key].map(item => item.name).join('; ') : obj[key]).join('; ');            
+   return keys.map(key => key === 'friends' ? obj[key].map(item => item.name).join('; ') : obj[key]).join('; ');
 };
 
 
 // ======== OUTPUT ========
 
 inhabitants.forEach(obj => print(description(obj)));
+
 
 /* Use print(message) for output.
    Default tag for message is <pre>. Use print(message,'div') to change containing element tag.
@@ -82,5 +65,3 @@ inhabitants.forEach(obj => print(description(obj)));
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
    */
-
-
