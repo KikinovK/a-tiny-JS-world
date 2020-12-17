@@ -14,24 +14,31 @@ class Being {
       this.gender = gender;
       this.saying = saying;
       this.friends = [];
-      this.species = '';
    };
+
    addFriends(arr) {
       arr.forEach(item => this.friends.push(item));
    };
+
    description() {
-      return `${this.saying} my name is ${this.name}, I am a ${this.species}, I am ${this.gender}, ${this.friends.length > 0 ? `My friends is ${ this.friends.map(item => item.name).join(' and ')}` : 'I have not got friends'},`
-   }
+      let descriptions = [this.saying,
+         `my name is ${this.name}`,
+         `I am ${this.gender}`,
+         `${this.friends.length > 0
+            ? `My friends is ${ this.friends.map(item => item.name).join(' and ')}`
+            : 'I have not got friends'}`
+      ];
+      return  descriptions.join(', ')
+   };
 };
 
 class Animal extends Being {
    constructor(name, gender, saying) {
       super(name, gender, saying);
       this.paws = 4;
-
    };
    description() {
-      return `${super.description()},  I have ${this.paws} paws`
+      return `${super.description()}, I have ${this.paws} paws`
    }
 };
 
@@ -41,25 +48,30 @@ class Human extends Being {
       this.legs = 2;
       this.hands = 2;
       this.species = 'human';
-
    };
    description() {
-      return `${super.description()}, I have ${this.hands} hands and ${this.legs} legs`
-   }
+      return `${super.description()}, I have ${this.hands} hands and ${this.legs} legs, I am a ${this.species}`
+   };
 };
 
 class Dog extends Animal {
    constructor(name, gender, saying) {
       super(name, gender, saying);
       this.species = 'dog';
-   }
+   };
+   description() {
+      return `${super.description()}, I am a ${this.species}`
+   };
 };
 
 class Cat extends Animal {
    constructor(name, gender, saying) {
       super(name, gender, saying);
       this.species = 'cat';
-   }
+   };
+   description() {
+      return `${super.description()}, I am a ${this.species}`
+   };
 };
 
 class SuperHero extends Human {
